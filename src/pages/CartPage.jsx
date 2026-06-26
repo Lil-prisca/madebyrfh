@@ -13,6 +13,29 @@ export default function CartPage() {
     total,
   } = useCart();
 
+  const WHATSAPP_NUMBER = "2348144169686";
+
+  const whatsappMessage = encodeURIComponent(`
+Hello,
+
+I'm interested in ordering the following items:
+
+${cart
+  .map(
+    (item, index) => `
+${index + 1}. ${item.name}
+   • Size: ${item.size}
+   • Quantity: ${item.quantity}
+   • Price: ${item.price}
+`,
+  )
+  .join("\n")}
+
+Total: ₦${total.toLocaleString()}
+
+Please let me know the availability and the next steps. Thank you.
+`);
+
   return (
     <>
       <NavBar />
@@ -115,7 +138,13 @@ export default function CartPage() {
                 </div>
 
                 <button className="w-full bg-[#D4AF37] text-black py-4 rounded-xl mt-8">
-                  Proceed To Checkout
+                  <a
+                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=${whatsappMessage}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Proceed To Checkout
+                  </a>
                 </button>
               </div>
             </div>
