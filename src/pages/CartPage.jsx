@@ -84,7 +84,7 @@ Please let me know the availability and the next steps. Thank you.
                   >
                     <img
                       src={item.img}
-                      className="w-40 h-40 rounded-xl object-cover"
+                      className="w-40 h-40 object-top rounded-xl object-cover"
                       alt={item.name}
                     />
 
