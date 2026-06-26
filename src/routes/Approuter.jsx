@@ -6,17 +6,21 @@ import Contact from "../pages/Contact";
 import Shop from "../pages/Shop";
 import ItemDetail from "../pages/ItemDetails";
 import CartPage from "../pages/CartPage";
+import ScrollToTop from "../components/ScrollToTop";
 
 const Approuter = () => {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/contact" element={<Contact />} />
-      <Route path="/shop" element={<Shop />} />
-      <Route path="/shop/:id" element={<ItemDetail />} />
-      <Route path="/cart" element={<CartPage />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/shop/:id" element={<ItemDetail />} />
+        <Route path="/cart" element={<CartPage />} />
+      </Routes>
+    </>
   );
 };
 

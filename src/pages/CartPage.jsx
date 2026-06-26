@@ -151,7 +151,6 @@ Please let me know the availability and the next steps. Thank you.
           )}
         </div>
       </div>
-
       <Footer />
     </>
   );
