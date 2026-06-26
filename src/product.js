@@ -1,12 +1,17 @@
+import img1 from "./assets/ChatGPT Image Jun 25, 2026, 08_11_27 AM.png";
+import img2 from "./assets/ChatGPT Image Jun 25, 2026, 08_30_23 AM - Copy.png";
+import blueside from "./assets/Side-Blue.png";
+import details from "./assets/Details-blue.png";
+
 export const products = [
   {
     id: 1,
-    name: "Tailored Wool Overcoat",
+    name: "Tailored Overcoat",
     price: "₦185,000",
     priceVal: 185000,
     category: "Outerwear",
     tag: "New",
-    img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=700&q=80",
+    img: img1,
     images: [
       "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=1000&q=85",
       "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=1000&q=85",
@@ -30,7 +35,7 @@ export const products = [
     priceVal: 42000,
     category: "Essentials",
     tag: null,
-    img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&q=80",
+    img: img2,
     images: [
       "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=1000&q=85",
       "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1000&q=85",
@@ -46,14 +51,14 @@ export const products = [
   },
   {
     id: 3,
-    name: "Leather Derby Shoes",
+    name: "Blue coat with Handmade desiggn",
     price: "₦96,500",
     priceVal: 96500,
-    category: "Footwear",
+    category: "Outerwear",
     tag: "New",
-    img: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=700&q=80",
+    img: blueside,
     images: [
-      "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=1000&q=85",
+      details,
       "https://images.unsplash.com/photo-1582897085656-92847d1f8076?w=1000&q=85",
     ],
     description:

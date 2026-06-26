@@ -1,17 +1,20 @@
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/Logo.png";
+import { useCart } from "../context/useCart";
 
 const navLinks = [
   { link: "/shop", name: "Shop" },
   { link: "/about", name: "About" },
-  { link: "", name: "Footwear" },
-  { link: "", name: "Tailoring" },
+  // { link: "", name: "Footwear" },
+  // { link: "", name: "Tailoring" },
   { link: "/contact", name: "Contact" },
 ];
 
 const NavBar = () => {
+  const { itemCount } = useCart();
   const [open, setOpen] = useState(false);
   return (
     <motion.nav
@@ -46,17 +49,24 @@ const NavBar = () => {
               />
             </svg>
           </button>
-          <button className="hidden sm:flex w-9 h-9 rounded-xl border border-white/10 items-center justify-center text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/40 transition-colors">
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
-              <path
-                d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4M3 6h18M16 10a4 4 0 01-8 0"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </button>
+          <Link to="/cart">
+            <button className="relative flex w-9 h-9 rounded-xl border border-white/10 items-center justify-center text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/40 transition-colors">
+              <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4M3 6h18M16 10a4 4 0 01-8 0"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 w-5 h-5 rounded-full bg-[#D4AF37] text-black text-xs flex items-center justify-center">
+                  {itemCount}
+                </span>
+              )}
+            </button>
+          </Link>
           <button
             onClick={() => setOpen(!open)}
             className="md:hidden w-9 h-9 rounded-xl border border-white/10 flex flex-col items-center justify-center gap-1"

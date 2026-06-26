@@ -5,6 +5,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Shop from "../pages/Shop";
 import ItemDetail from "../pages/ItemDetails";
+import CartPage from "../pages/CartPage";
 
 const Approuter = () => {
   return (
@@ -14,6 +15,7 @@ const Approuter = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/shop" element={<Shop />} />
       <Route path="/shop/:id" element={<ItemDetail />} />
+      <Route path="/cart" element={<CartPage />} />
     </Routes>
   );
 };
