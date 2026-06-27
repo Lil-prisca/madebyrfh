@@ -24,9 +24,11 @@ const NavBar = () => {
       className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-[94%] max-w-6xl"
     >
       <div className="rounded-2xl border border-[#D4AF37]/20 bg-black/60 backdrop-blur-xl px-6 py-3 flex items-center justify-between shadow-[0_0_30px_rgba(0,0,0,0.5)]">
-        <span className="font-script text-2xl text-[#D4AF37] select-none">
-          <img src={logo} alt="logo" className=" h-10" />
-        </span>
+        <Link to="/">
+          <span className="font-script text-2xl text-[#D4AF37] select-none">
+            <img src={logo} alt="logo" className=" h-10" />
+          </span>
+        </Link>
 
         <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
