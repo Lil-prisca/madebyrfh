@@ -50,7 +50,7 @@ function FilterSidebar({
         <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-semibold mb-4">
           Category
         </h4>
-        <div className="flex flex-col gap-1">
+        <div className="flex flex-col  overflow-auto gap-1">
           {categories.map((cat) => (
             <button
               key={cat}
@@ -102,9 +102,9 @@ function ProductCard({ product, index }) {
         ease: [0.22, 1, 0.36, 1],
       }}
       onClick={() => navigate(`/shop/${product.id}`)}
-      className="group rounded-2xl border border-[#D4AF37]/15 bg-white/[0.03] backdrop-blur-md overflow-hidden hover:border-[#D4AF37]/45 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500 cursor-pointer"
+      className=" rounded-2xl border border-[#D4AF37]/15 bg-white/[0.03] backdrop-blur-md overflow-hidden hover:border-[#D4AF37]/45 hover:shadow-[0_0_30px_rgba(212,175,55,0.1)] transition-all duration-500 cursor-pointer"
     >
-      <div className="relative h-64 overflow-hidden">
+      <div className="relative  h-64 overflow-hidden">
         <img
           src={product.img}
           alt={product.name}
@@ -229,7 +229,7 @@ function ShopGrid() {
           </div>
 
           {/* Mobile category pills */}
-          <div className="flex lg:hidden gap-2 mb-8 overflow-x-auto pb-1">
+          <div className="flex lg:hidden gap-2 mb-8 overflow-x-auto pb-1 scrollbar-hide flex-wrap">
             {categories.map((cat) => (
               <button
                 key={cat}

@@ -76,7 +76,7 @@ Please let me know the availability and the next steps. Thank you.
             </div>
           ) : (
             <div className="grid lg:grid-cols-[2fr_1fr] gap-10">
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {cart.map((item) => (
                   <div
                     key={`${item.id}-${item.size}`}
@@ -95,7 +95,7 @@ Please let me know the availability and the next steps. Thank you.
 
                       <p className="text-white/60 mt-2">Size: {item.size}</p>
 
-                      <div className="flex justify-between mt-8">
+                      <div className="flex flex-col md:flex-row justify-between mt-8">
                         <div className="flex border border-white/20 rounded-lg">
                           <button
                             onClick={() => decreaseQuantity(item.id, item.size)}
@@ -116,7 +116,7 @@ Please let me know the availability and the next steps. Thank you.
 
                         <button
                           onClick={() => removeFromCart(item.id, item.size)}
-                          className="text-red-500"
+                          className="text-red-500 mt-2 md:mt-0"
                         >
                           Remove
                         </button>
