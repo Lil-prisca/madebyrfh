@@ -1,7 +1,18 @@
-import img1 from "./assets/ChatGPT Image Jun 25, 2026, 08_11_27 AM.png";
-import img2 from "./assets/ChatGPT Image Jun 25, 2026, 08_30_23 AM - Copy.png";
+import creamfront from "./assets/front-cream.png";
+import creamside from "./assets/side-cream.png";
+import creamdetails from "./assets/details-cream.png";
+import creamback from "./assets/back-cream.png";
+import creamcloseup from "./assets/closeup-cream.png";
+import redfront from "./assets/front-red.png";
+import redside from "./assets/side-red.png";
+import reddetails from "./assets/details-red.png";
+import redback from "./assets/back-red.png";
+import redcloseup from "./assets/closeup-red.png";
+import bluefront from "./assets/front-blue.png";
 import blueside from "./assets/Side-Blue.png";
-import details from "./assets/Details-blue.png";
+import bluedetails from "./assets/Details-blue.png";
+import backblue from "./assets/back-blue.png";
+import bluecloseup from "./assets/closup-blue.png";
 
 export const products = [
   {
@@ -11,13 +22,8 @@ export const products = [
     priceVal: 185000,
     category: "Outerwear",
     tag: "New",
-    img: img1,
-    images: [
-      "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=1000&q=85",
-      "https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=1000&q=85",
-      "https://images.unsplash.com/photo-1551489186-cf8726f514f8?w=1000&q=85",
-      "https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=1000&q=85",
-    ],
+    img: creamfront,
+    images: [creamside, creamdetails, creamback, creamcloseup],
     description:
       "Cut from a heavyweight Italian wool blend, this overcoat is built for the in-between weather of a Lagos morning meeting and a London evening flight. A structured shoulder, single-breasted front, and a length that sits just above the knee.",
     details: [
@@ -35,11 +41,8 @@ export const products = [
     priceVal: 42000,
     category: "Essentials",
     tag: null,
-    img: img2,
-    images: [
-      "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=1000&q=85",
-      "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=1000&q=85",
-    ],
+    img: redfront,
+    images: [redcloseup, redside, reddetails, redback],
     description:
       "A fine-gauge merino crewneck built to layer under a blazer or stand alone. Breathable, naturally odor-resistant, holds its shape wash after wash.",
     details: [
@@ -56,11 +59,8 @@ export const products = [
     priceVal: 96500,
     category: "Outerwear",
     tag: "New",
-    img: blueside,
-    images: [
-      details,
-      "https://images.unsplash.com/photo-1582897085656-92847d1f8076?w=1000&q=85",
-    ],
+    img: bluefront,
+    images: [bluedetails, blueside, backblue, bluecloseup],
     description:
       "Full-grain leather derbies, Goodyear-welted for a resole down the line. Built for the man who wears one good pair of shoes for a decade, not ten cheap ones in a year.",
     details: [
