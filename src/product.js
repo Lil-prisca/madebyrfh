@@ -13,6 +13,19 @@ import blueside from "./assets/Side-Blue.png";
 import bluedetails from "./assets/Details-blue.png";
 import backblue from "./assets/back-blue.png";
 import bluecloseup from "./assets/closup-blue.png";
+// short
+import shortfront from "./assets/front-short.png";
+import shortside from "./assets/side-short.png";
+import shortdetails from "./assets/details-short.png";
+import shortback from "./assets/back-short.png";
+// import shortcloseup from "./assets/closup-short.png";
+// suit
+import suitfront from "./assets/front-suit.png";
+import suitside from "./assets/side-suit.png";
+
+import suitback from "./assets/back-suit.png";
+import suitcloseup from "./assets/closeup-suit.png";
+import suitpoc from "./assets/pocket&button-suit.png";
 
 export const products = [
   {
@@ -70,46 +83,42 @@ export const products = [
     ],
     sizes: ["40", "41", "42", "43", "44", "45"],
   },
-  // {
-  //   id: 4,
-  //   name: "Slim Oxford Shirt",
-  //   price: "₦38,000",
-  //   priceVal: 38000,
-  //   category: "Tailoring",
-  //   tag: null,
-  //   img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&q=80",
-  //   images: [
-  //     "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=1000&q=85",
-  //   ],
-  //   description:
-  //     "A slim-cut oxford shirt in brushed cotton, equally at home under a blazer or with sleeves rolled on a Saturday.",
-  //   details: [
-  //     "100% brushed cotton",
-  //     "Mother-of-pearl buttons",
-  //     "Slim fit through the body",
-  //   ],
-  //   sizes: ["S", "M", "L", "XL"],
-  // },
-  // {
-  //   id: 5,
-  //   name: "Suede Chelsea Boots",
-  //   price: "₦112,000",
-  //   priceVal: 112000,
-  //   category: "Footwear",
-  //   tag: "Limited",
-  //   img: "https://images.unsplash.com/photo-1614253429340-98120bd6d753?w=700&q=80",
-  //   images: [
-  //     "https://images.unsplash.com/photo-1614253429340-98120bd6d753?w=1000&q=85",
-  //   ],
-  //   description:
-  //     "Suede Chelsea boots with an elastic side panel and a low stacked heel. Limited run — once they're gone, this colorway doesn't come back.",
-  //   details: [
-  //     "Genuine suede upper",
-  //     "Elastic side gusset",
-  //     "Leather sole, stacked heel",
-  //   ],
-  //   sizes: ["40", "41", "42", "43", "44"],
-  // },
+  {
+    id: 4,
+    name: "Slim Oxford Shirt",
+    price: "₦38,000",
+    priceVal: 38000,
+    category: "Tailoring",
+    tag: null,
+    img: shortfront,
+    images: [shortside, shortback, shortdetails],
+    description:
+      "A slim-cut oxford shirt in brushed cotton, equally at home under a blazer or with sleeves rolled on a Saturday.",
+    details: [
+      "100% brushed cotton",
+      "Mother-of-pearl buttons",
+      "Slim fit through the body",
+    ],
+    sizes: ["S", "M", "L", "XL"],
+  },
+  {
+    id: 5,
+    name: "Suede Chelsea Boots",
+    price: "₦112,000",
+    priceVal: 112000,
+    category: "Footwear",
+    tag: "Limited",
+    img: suitfront,
+    images: [suitside, suitback, suitpoc, suitcloseup],
+    description:
+      "Suede Chelsea boots with an elastic side panel and a low stacked heel. Limited run — once they're gone, this colorway doesn't come back.",
+    details: [
+      "Genuine suede upper",
+      "Elastic side gusset",
+      "Leather sole, stacked heel",
+    ],
+    sizes: ["40", "41", "42", "43", "44"],
+  },
   // {
   //   id: 6,
   //   name: "Cashmere Blend Blazer",
