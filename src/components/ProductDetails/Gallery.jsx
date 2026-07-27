@@ -1,12 +1,12 @@
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Gallery({ product }) {
   // Main image first, then all gallery images
-  const images = useMemo(
-    () => [product.img, ...(product.images || [])],
-    [product],
-  );
+  const images =
+    product.images?.length > 0
+      ? [product.img, ...product.images]
+      : [product.img];
 
   const [active, setActive] = useState(0);
 

@@ -1,11 +1,39 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { products } from "../../product";
 import { motion } from "framer-motion";
+
+import { fetchRelatedProducts } from "../../lib/supabase";
+
 export default function RelatedItems({ product }) {
   const navigate = useNavigate();
-  const related = products
-    .filter((p) => p.id !== product.id && p.category === product.category)
-    .slice(0, 3);
+
+  const [related, setRelated] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!product) return;
+
+    const loadRelated = async () => {
+      setLoading(true);
+
+      const { data, error } = await fetchRelatedProducts(
+        product.category,
+        product.id,
+      );
+
+      if (error) {
+        console.error(error);
+      } else {
+        setRelated(data || []);
+      }
+
+      setLoading(false);
+    };
+
+    loadRelated();
+  }, [product]);
+
+  if (loading) return null;
 
   if (related.length === 0) return null;
 
@@ -19,6 +47,7 @@ export default function RelatedItems({ product }) {
         className="flex items-center gap-3 mb-10"
       >
         <div className="h-px w-10 bg-[#D4AF37]" />
+
         <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium">
           Pairs Well With
         </span>
@@ -46,10 +75,12 @@ export default function RelatedItems({ product }) {
                 className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
               />
             </div>
+
             <div className="p-5">
               <h3 className="font-display text-lg font-semibold text-white mb-1">
                 {p.name}
               </h3>
+
               <p className="text-[#D4AF37] font-medium">{p.price}</p>
             </div>
           </motion.div>

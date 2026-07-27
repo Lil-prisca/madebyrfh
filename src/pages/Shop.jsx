@@ -1,7 +1,8 @@
-import { useState, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { products as allProducts } from "../product";
+// import { products as allProducts } from "../product";
+import { fetchProducts } from "../lib/supabase";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
@@ -153,18 +154,54 @@ function ShopGrid() {
   const [sort, setSort] = useState("newest");
   const [sortOpen, setSortOpen] = useState(false);
 
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      const { data, error } = await fetchProducts();
+
+      if (error) {
+        console.error(error);
+      } else {
+        setProducts(data || []);
+      }
+
+      setLoading(false);
+    };
+
+    loadProducts();
+  }, []);
+
   const filtered = useMemo(() => {
-    let list = allProducts.filter(
+    let list = products.filter(
       (p) =>
         (activeCategory === "All" || p.category === activeCategory) &&
-        p.priceVal <= maxPrice,
+        Number(p.price_val) <= maxPrice,
     );
-    if (sort === "asc")
-      list = [...list].sort((a, b) => a.priceVal - b.priceVal);
-    if (sort === "desc")
-      list = [...list].sort((a, b) => b.priceVal - a.priceVal);
+
+    if (sort === "asc") {
+      list = [...list].sort(
+        (a, b) => Number(a.price_val) - Number(b.price_val),
+      );
+    }
+
+    if (sort === "desc") {
+      list = [...list].sort(
+        (a, b) => Number(b.price_val) - Number(a.price_val),
+      );
+    }
+
     return list;
-  }, [activeCategory, maxPrice, sort]);
+  }, [products, activeCategory, maxPrice, sort]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center py-24">
+        <div className="w-8 h-8 border-2 border-[#D4AF37] border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
 
   return (
     <section className="max-w-6xl mx-auto px-6 lg:px-10 pb-24">

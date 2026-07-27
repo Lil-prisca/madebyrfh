@@ -7,12 +7,14 @@ import Shop from "../pages/Shop";
 import ItemDetail from "../pages/ItemDetails";
 import CartPage from "../pages/CartPage";
 import ScrollToTop from "../components/ScrollToTop";
+import AdminApp from "../admin/AdminApp";
 
 const Approuter = () => {
   return (
     <>
       <ScrollToTop />
       <Routes>
+        <Route path="/admin/*" element={<AdminApp />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />

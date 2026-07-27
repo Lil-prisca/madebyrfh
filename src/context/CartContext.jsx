@@ -10,7 +10,6 @@ export function CartProvider({ children }) {
     return saved ? JSON.parse(saved) : [];
   });
 
-  // Persist whenever cart changes
   useEffect(() => {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
   }, [cart]);
@@ -35,6 +34,7 @@ export function CartProvider({ children }) {
           id: product.id,
           name: product.name,
           price: product.price,
+          priceVal: product.price_val, // ← added
           img: product.img,
           size,
           quantity: 1,
@@ -63,21 +63,17 @@ export function CartProvider({ children }) {
     setCart((prev) =>
       prev.map((item) =>
         item.id === id && item.size === size
-          ? {
-              ...item,
-              quantity: Math.max(1, item.quantity - 1),
-            }
+          ? { ...item, quantity: Math.max(1, item.quantity - 1) }
           : item,
       ),
     );
   };
 
-  const clearCart = () => {
-    setCart([]);
-  };
+  const clearCart = () => setCart([]);
 
   const total = cart.reduce((sum, item) => {
-    const price = Number(item.price.replace(/[₦,]/g, ""));
+    const price =
+      item.priceVal ?? Number(String(item.price).replace(/[₦,]/g, ""));
     return sum + price * item.quantity;
   }, 0);
 
