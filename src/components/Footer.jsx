@@ -1,5 +1,6 @@
 import Logo from "../assets/Logo.png";
 import { FaInstagram, FaFacebookF, FaTiktok } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const socials = [
   {
@@ -64,15 +65,27 @@ const Footer = () => {
         {[
           {
             title: "Shop",
-            links: ["Outerwear", "Footwear", "Tailoring", "Essentials"],
+            links: [
+              { name: "Outerwear", to: "/shop" },
+              { name: "Footwear", to: "/" },
+              { name: "Tailoring", to: "/" },
+              { name: "Essentials", to: "/" },
+            ],
           },
           {
             title: "Company",
-            links: ["About", "Stockists", "Careers", "Contact"],
+            links: [
+              { name: "About", to: "/about" },
+              { name: "Contact", to: "/contact" },
+            ],
           },
           {
             title: "Support",
-            links: ["Shipping", "Returns", "Size Guide", "FAQ"],
+            links: [
+              { name: "Shipping", to: "/" },
+              { name: "Returns", to: "/" },
+              { name: "Size Guide", to: "/" },
+            ],
           },
         ].map((col) => (
           <div key={col.title}>
@@ -82,12 +95,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {col.links.map((l) => (
                 <li key={l}>
-                  <a
-                    href="#"
+                  <Link
+                    to={l.to}
                     className="text-white/40 hover:text-[#D4AF37] text-sm transition-colors"
                   >
-                    {l}
-                  </a>
+                    {l.name}
+                  </Link>
                 </li>
               ))}
             </ul>

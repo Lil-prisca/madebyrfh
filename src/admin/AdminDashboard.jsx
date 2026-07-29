@@ -61,17 +61,17 @@ export default function AdminDashboard() {
       value: stats?.total_products ?? 0,
       sub: "in catalog",
     },
-    { label: "Total Orders", value: stats?.total_orders ?? 0, sub: "all time" },
-    {
-      label: "Pending Orders",
-      value: stats?.pending ?? 0,
-      sub: "need attention",
-    },
-    {
-      label: "Revenue",
-      value: `₦${(stats?.total_revenue ?? 0).toLocaleString()}`,
-      sub: "all time",
-    },
+    // { label: "Total Orders", value: stats?.total_orders ?? 0, sub: "all time" },
+    // {
+    //   label: "Pending Orders",
+    //   value: stats?.pending ?? 0,
+    //   sub: "need attention",
+    // },
+    // {
+    //   label: "Revenue",
+    //   value: `₦${(stats?.total_revenue ?? 0).toLocaleString()}`,
+    //   sub: "all time",
+    // },
   ];
 
   return (
@@ -84,7 +84,7 @@ export default function AdminDashboard() {
       </div>
 
       {/* Recent orders */}
-      <motion.div
+      {/* <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.32, duration: 0.5 }}
@@ -95,9 +95,9 @@ export default function AdminDashboard() {
             Recent Orders
           </h2>
           <span className="text-white/40 text-xs">Last 5</span>
-        </div>
+        </div> */}
 
-        {recentOrders.length === 0 ? (
+      {/* {recentOrders.length === 0 ? (
           <p className="text-white/30 text-sm text-center py-12">
             No orders yet.
           </p>
@@ -165,8 +165,8 @@ export default function AdminDashboard() {
               </tbody>
             </table>
           </div>
-        )}
-      </motion.div>
+        )} */}
+      {/* </motion.div> */}
     </div>
   );
 }

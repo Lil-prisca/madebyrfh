@@ -1,69 +1,36 @@
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import heroimg from "../assets/lanscapeimg.jpeg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-const products = [
-  {
-    id: 1,
-    name: "Tailored Wool Overcoat",
-    price: "₦185,000",
-    img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?w=700&q=80",
-    tag: "New",
-  },
-  {
-    id: 2,
-    name: "Merino Crewneck",
-    price: "₦42,000",
-    img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=700&q=80",
-    tag: null,
-  },
-  {
-    id: 3,
-    name: "Leather Derby Shoes",
-    price: "₦96,500",
-    img: "https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=700&q=80",
-    tag: "New",
-  },
-  {
-    id: 4,
-    name: "Slim Oxford Shirt",
-    price: "₦38,000",
-    img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&q=80",
-    tag: null,
-  },
-  {
-    id: 5,
-    name: "Suede Chelsea Boots",
-    price: "₦112,000",
-    img: "https://images.unsplash.com/photo-1614253429340-98120bd6d753?w=700&q=80",
-    tag: "Limited",
-  },
-  {
-    id: 6,
-    name: "Cashmere Blend Blazer",
-    price: "₦220,000",
-    img: "https://images.unsplash.com/photo-1593032465175-481ac7f401a0?w=700&q=80",
-    tag: null,
-  },
-];
+import { fetchProducts } from "../lib/supabase";
+import bespokeAgbadaImg from "../assets/closup-blue.png";
+import luxuryKaftans from "../assets/closeup-red.png";
 
 const categories = [
   {
-    name: "Outerwear",
-    img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
+    name: "Bespoke Agbada",
+    img: bespokeAgbadaImg,
   },
   {
-    name: "Footwear",
-    img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&q=80",
+    name: "Luxury Kaftans",
+    img: luxuryKaftans,
   },
   {
-    name: "Tailoring",
+    name: "Groom & Wedding Ensembles",
     img: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
   },
   {
-    name: "Essentials",
+    name: "Corporate Native Wear",
     img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
+  },
+  {
+    name: "Custom Traditional Attire",
+    img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
+  },
+  {
+    name: "Ready-to-Wear Collections",
+    img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&q=80",
   },
 ];
 
@@ -244,6 +211,19 @@ function Categories() {
 }
 
 function Products() {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const load = async () => {
+    setLoading(true);
+    const { data } = await fetchProducts();
+    setProducts(data ?? []);
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
   return (
     <section className="py-12 max-w-6xl mx-auto px-6 lg:px-10">
       <motion.div

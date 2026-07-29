@@ -104,10 +104,11 @@ function Manifesto() {
           </div>
           <p className="text-white/50 leading-relaxed">
             madebyRFH is a brand born out of excellence and a commitment to a
-            premium tailoring experience — changing the narrative of tailoring
-            while creating timeless fashion pieces. For over a decade, we've
-            styled clients across every class with an unwavering commitment to
-            EXCELLENCE, QUALITY, VALUE and DETAILS.
+            premium tailoring experience, changing the narrative of tailoring
+            while creating timeless fashion pieces.
+            <br /> For over a decade, we've styled clients across every class
+            with an unwavering commitment to EXCELLENCE, QUALITY, VALUE and
+            DETAILS.
           </p>
         </motion.div>
 

@@ -5,8 +5,12 @@ import Footer from "../components/Footer";
 
 const channels = [
   { label: "Email", value: "concierge@madebyrfh.com" },
-  { label: "Phone", value: "+234 803 555 0142" },
-  { label: "Atelier", value: "14 Adeola Odeku St, Victoria Island, Lagos" },
+  { label: "Phone", value: "+234 000 000 0000" },
+  {
+    label: "Location",
+    value:
+      "RANGE’S PLACE, BESIDE RABLOR FUEL STATION, ALONG OLUYOLE SHARP CORNER TO KUOLA ROAD.",
+  },
   { label: "Hours", value: "Mon–Sat, 10am – 7pm WAT" },
 ];
 
@@ -123,8 +127,8 @@ function InfoPanel() {
       </h1>
 
       <p className="text-white/50 leading-relaxed mb-10 mt-6 max-w-md">
-        Sizing, bespoke requests, wholesale, press — whatever it is, a real
-        person reads every message.
+        Sizing, bespoke requests, wholesale, whatever it is, a real person reads
+        every message.
       </p>
 
       <div className="space-y-5 rounded-2xl border border-[#D4AF37]/15 bg-gradient-to-b from-[#D4AF37]/[0.03] to-transparent p-6">
