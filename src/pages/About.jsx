@@ -6,32 +6,30 @@ import Footer from "../components/Footer";
 
 const values = [
   {
-    title: "Cut, Not Costume",
-    body: "Every silhouette is fitted to move with you, not perform for a photograph. We design for the man who wears the piece, not the other way round.",
+    title: "Precision Craftsmanship",
+    body: "Every piece is meticulously handcrafted, blending traditional tailoring technique with contemporary design for a fit that's impeccable, not approximate.",
   },
   {
-    title: "Fewer, Better",
-    body: "Small runs, considered fabrics, nothing made to be discounted in six weeks. We'd rather sell out than mark down.",
+    title: "Premium Fabrics",
+    body: "We source materials that hold their shape and their shine — nothing chosen to be discounted or replaced in a season.",
   },
   {
-    title: "Built in Lagos, Worn Anywhere",
-    body: "Pattern-cut and finished by hand in our Lagos atelier, built to hold its shape from Victoria Island to a winter in London.",
+    title: "Personalized Service",
+    body: "Every client begins with a conversation. We take the time to understand your style, occasion, and personality before a single cut is made.",
+  },
+  {
+    title: "Attention to Detail",
+    body: "Affordable luxury without compromising quality — the smallest stitch gets the same care as the finished silhouette.",
   },
 ];
 
-const milestones = [
-  {
-    year: "2021",
-    text: "First collection — eleven pieces, one tailor, a spare room .",
-  },
-  {
-    year: "2023",
-    text: "Opened the atelier. Stopped outsourcing finishing work to anyone.",
-  },
-  {
-    year: "2025",
-    text: "madebyRFH crosses into footwear, built on the same floor as the suiting.",
-  },
+const creations = [
+  "Bespoke Agbada",
+  "Luxury Kaftans",
+  "Groom & Wedding Ensembles",
+  "Corporate Native Wear",
+  "Custom Traditional Attire",
+  "Ready-to-Wear Collections",
 ];
 
 function AboutHero() {
@@ -77,10 +75,10 @@ function AboutHero() {
           transition={{ duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.05] max-w-3xl"
         >
-          We make clothes the way a tailor makes a promise —
+          Tailoring Confidence.
           <span className="font-script italic text-[#D4AF37] font-normal">
             {" "}
-            one fitting at a time.
+            Crafting Legacy.
           </span>
         </motion.h1>
       </div>
@@ -101,13 +99,15 @@ function Manifesto() {
           <div className="flex items-center gap-3 mb-6">
             <div className="h-px w-10 bg-[#D4AF37]" />
             <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium">
-              The Premise
+              Who We Are
             </span>
           </div>
           <p className="text-white/50 leading-relaxed">
-            Most menswear is built for a rack. Ours is built for a body — your
-            shoulders, your stride, the way you actually sit in a chair during a
-            four-hour meeting.
+            madebyRFH is a brand born out of excellence and a commitment to a
+            premium tailoring experience — changing the narrative of tailoring
+            while creating timeless fashion pieces. For over a decade, we've
+            styled clients across every class with an unwavering commitment to
+            EXCELLENCE, QUALITY, VALUE and DETAILS.
           </p>
         </motion.div>
 
@@ -119,9 +119,8 @@ function Manifesto() {
           className="font-display text-3xl sm:text-4xl text-white leading-snug border-l-2 border-[#D4AF37] pl-8 relative"
         >
           <span className="absolute -left-[2px] top-0 w-2 h-2 rounded-full bg-[#D4AF37] -translate-x-1/2" />
-          "Confidence isn't loud. It's a coat that sits right on the first try,
-          and a man who stops thinking about what he's wearing the moment he
-          puts it on."
+          "Exceptional style is more than what you wear — it's how you introduce
+          yourself to the world."
         </motion.blockquote>
       </div>
     </section>
@@ -144,7 +143,7 @@ function Values() {
         </span>
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {values.map((v, i) => (
           <motion.div
             key={v.title}
@@ -170,41 +169,56 @@ function Values() {
   );
 }
 
-function Timeline() {
+function OurCraft() {
   return (
     <section className="py-24 max-w-6xl mx-auto px-6 lg:px-10">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="flex items-center gap-3 mb-12"
-      >
-        <div className="h-px w-10 bg-[#D4AF37]" />
-        <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium">
-          How We Got Here
-        </span>
-      </motion.div>
+      <div className="grid lg:grid-cols-[1fr_1.4fr] gap-12 lg:gap-20 items-start">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="h-px w-10 bg-[#D4AF37]" />
+            <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium">
+              Our Craft
+            </span>
+          </div>
+          <p className="text-white/50 leading-relaxed">
+            Every client begins with a conversation. We take time to understand
+            your style, occasion, and personality before transforming your
+            vision into a garment tailored exclusively for you. From measurement
+            to final fitting, every stage is handled with care, precision, and
+            professionalism.
+          </p>
+        </motion.div>
 
-      <div className="space-y-0">
-        {milestones.map((m, i) => (
-          <motion.div
-            key={m.year}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-40px" }}
-            transition={{ delay: i * 0.08, duration: 0.6 }}
-            className="flex gap-8 py-6 border-b border-[#D4AF37]/15 last:border-b-0 items-start"
-          >
-            <div className="flex items-center gap-3 w-20 shrink-0">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
-              <span className="font-display text-2xl text-[#D4AF37] font-bold">
-                {m.year}
-              </span>
-            </div>
-            <p className="text-white/60 leading-relaxed">{m.text}</p>
-          </motion.div>
-        ))}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium block mb-6">
+            What We Create
+          </span>
+          <div className="grid sm:grid-cols-2 gap-x-8 gap-y-4">
+            {creations.map((item, i) => (
+              <motion.div
+                key={item}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.06, duration: 0.5 }}
+                className="flex items-center gap-3 py-3 border-b border-[#D4AF37]/15"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shrink-0" />
+                <span className="text-white/70">{item}</span>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   );
@@ -221,14 +235,15 @@ function CTA() {
         className="rounded-2xl border border-[#D4AF37]/30 bg-gradient-to-br from-[#D4AF37]/[0.08] via-white/[0.03] to-transparent backdrop-blur-md p-12 text-center shadow-[0_0_60px_rgba(212,175,55,0.08)]"
       >
         <h3 className="font-display text-3xl lg:text-4xl font-bold text-white mb-4">
-          See the Current Collection
+          Our Promise
         </h3>
         <p className="text-white/50 mb-8 max-w-md mx-auto">
-          Built the way you just read about. Worn by men who'd rather not
-          explain themselves.
+          We don't simply make clothes. We create pieces that inspire
+          confidence, celebrate culture, and stand the test of time — serving
+          clients across Nigeria and beyond.
         </p>
         <button className="bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors">
-          Shop the Edit
+          Explore the Collection
         </button>
       </motion.div>
     </section>
@@ -250,7 +265,7 @@ export default function RFHAbout() {
       <AboutHero />
       <Manifesto />
       <Values />
-      <Timeline />
+      <OurCraft />
       <CTA />
       <Footer />
     </div>
