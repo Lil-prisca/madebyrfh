@@ -52,10 +52,10 @@ export default function BuyPanel({ product }) {
       <div className="flex gap-4 mb-8">
         <button
           onClick={() => {
-            if (!size) {
-              setShowNote(true);
-              return;
-            }
+            // if (!size) {
+            //   setShowNote(true);
+            //   return;
+            // }
 
             addToCart(product, size);
             setShowNote(true);
