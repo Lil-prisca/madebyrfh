@@ -28,8 +28,18 @@ export const fetchProducts = () =>
 export const insertProduct = (data) =>
   supabase.from("products").insert([data]).select().single();
 
-export const updateProduct = (id, data) =>
-  supabase.from("products").update(data).eq("id", id).select().single();
+// export const updateProduct = (id, data) =>
+//   supabase.from("products").update(data).eq("id", id).select().single();
+
+export const updateProduct = (id, data) => {
+  const { id: _omit, ...safeData } = data;
+  return supabase
+    .from("products")
+    .update(safeData)
+    .eq("id", id)
+    .select()
+    .single();
+};
 
 export const deleteProduct = (id) =>
   supabase.from("products").delete().eq("id", id);

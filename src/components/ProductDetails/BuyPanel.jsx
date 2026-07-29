@@ -30,7 +30,7 @@ export default function BuyPanel({ product }) {
 
       <div className="mb-8">
         <h4 className="text-white text-sm font-semibold mb-3 tracking-wide">
-          Select Size
+          {/* Select Size */}
         </h4>
         <div className="flex gap-2">
           {product.sizes.map((s) => (
@@ -75,7 +75,7 @@ export default function BuyPanel({ product }) {
         </button>
       </div>
 
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {showNote && (
           <motion.p
             initial={{ opacity: 0, y: -6 }}
@@ -86,7 +86,7 @@ export default function BuyPanel({ product }) {
             {size ? `Added — size ${size}.` : "Pick a size first."}
           </motion.p>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
 
       <div className="border-t border-[#D4AF37]/15 pt-6">
         <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-semibold mb-4">

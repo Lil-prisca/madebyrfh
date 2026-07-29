@@ -84,7 +84,7 @@ function FilterSidebar({
         <input
           type="range"
           min="20000"
-          max="220000"
+          max="2220000"
           step="5000"
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
