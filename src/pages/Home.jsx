@@ -217,7 +217,8 @@ function Products() {
   const load = async () => {
     setLoading(true);
     const { data } = await fetchProducts();
-    setProducts(data ?? []);
+    setProducts((data ?? []).slice(0, 5));
+
     setLoading(false);
   };
 

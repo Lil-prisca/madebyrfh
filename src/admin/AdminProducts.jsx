@@ -8,12 +8,12 @@ import {
   uploadProductImage,
 } from "../lib/supabase";
 
-const CATEGORIES = ["Outerwear", "Tailoring", "Footwear", "Essentials"];
+const CATEGORIES = ["Footwear", "Tailoring", "Suits"];
 const TAGS = ["", "New", "Limited"];
 
 const EMPTY_FORM = {
   name: "",
-  category: "Outerwear",
+  category: "Tailoring",
   price: "",
   price_val: "",
   tag: "",

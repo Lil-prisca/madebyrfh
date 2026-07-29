@@ -31,7 +31,7 @@ function StatCard({ label, value, sub, index }) {
 
 export default function AdminDashboard() {
   const [stats, setStats] = useState(null);
-  const [recentOrders, setRecentOrders] = useState([]);
+  // const [recentOrders, setRecentOrders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -6,7 +6,15 @@ import { fetchProducts } from "../lib/supabase";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-const categories = ["All", "Outerwear", "Tailoring", "Footwear", "Essentials"];
+const categories = [
+  "All",
+  "Footwear",
+  "Tailoring",
+  "Suits",
+  "Essentials",
+  "Corporate Native Wear",
+  "Custom Traditional Attire",
+];
 const sorts = [
   { label: "Newest", value: "newest" },
   { label: "Price: Low to High", value: "asc" },
