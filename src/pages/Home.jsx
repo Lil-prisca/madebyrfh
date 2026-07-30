@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import heroimg from "../assets/lanscapeimg.jpeg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import NavBar from "../components/NavBar";
@@ -6,6 +7,7 @@ import Footer from "../components/Footer";
 import { fetchProducts } from "../lib/supabase";
 import bespokeAgbadaImg from "../assets/closup-blue.png";
 import luxuryKaftans from "../assets/closeup-red.png";
+import groomWedding from "../assets/closeup-suit.png";
 
 const categories = [
   {
@@ -18,7 +20,7 @@ const categories = [
   },
   {
     name: "Groom & Wedding Ensembles",
-    img: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80",
+    img: groomWedding,
   },
   {
     name: "Corporate Native Wear",
@@ -107,12 +109,16 @@ function Hero() {
           transition={{ duration: 0.6, delay: 1.1 }}
           className="flex gap-4"
         >
-          <button className="bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors">
-            Shop Collection
-          </button>
-          <button className="border border-white/20 text-white px-8 py-3.5 rounded-2xl font-semibold text-sm hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-colors">
-            Lookbook
-          </button>
+          <Link to="/shop">
+            <button className="bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors">
+              Shop Collection
+            </button>
+          </Link>
+          <Link to="/lookbook">
+            <button className="border border-white/20 text-white px-8 py-3.5 rounded-2xl font-semibold text-sm hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-colors">
+              Lookbook
+            </button>
+          </Link>
         </motion.div>
       </motion.div>
     </section>

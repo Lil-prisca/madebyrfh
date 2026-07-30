@@ -85,7 +85,7 @@ function FilterSidebar({
           type="range"
           min="20000"
           max="2220000"
-          step="5000"
+          step="10000"
           value={maxPrice}
           onChange={(e) => setMaxPrice(Number(e.target.value))}
           className="w-full accent-[#D4AF37]"
@@ -158,7 +158,7 @@ function ProductCard({ product, index }) {
 
 function ShopGrid() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [maxPrice, setMaxPrice] = useState(220000);
+  const [maxPrice, setMaxPrice] = useState(2220000);
   const [sort, setSort] = useState("newest");
   const [sortOpen, setSortOpen] = useState(false);
 
