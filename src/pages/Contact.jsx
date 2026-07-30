@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 
 const channels = [
   { label: "Email", value: "concierge@madebyrfh.com" },
-  { label: "Phone", value: "+234 000 000 0000" },
+  { label: "Phone", value: "+234 805 436 2327, +234 704 067 8273" },
   {
     label: "Location",
     value:
