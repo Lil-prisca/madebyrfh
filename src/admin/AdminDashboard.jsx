@@ -36,12 +36,9 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     const load = async () => {
-      const [statsRes, ordersRes] = await Promise.all([
-        fetchStats(),
-        fetchOrders(),
-      ]);
+      const [statsRes] = await Promise.all([fetchStats(), fetchOrders()]);
       setStats(statsRes);
-      setRecentOrders((ordersRes.data ?? []).slice(0, 5));
+      // setRecentOrders((ordersRes.data ?? []).slice(0, 5));
       setLoading(false);
     };
     load();

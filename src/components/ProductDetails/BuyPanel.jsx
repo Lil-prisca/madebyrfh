@@ -75,7 +75,7 @@ export default function BuyPanel({ product }) {
         </button>
       </div>
 
-      {/* <AnimatePresence>
+      <AnimatePresence>
         {showNote && (
           <motion.p
             initial={{ opacity: 0, y: -6 }}
@@ -83,10 +83,10 @@ export default function BuyPanel({ product }) {
             exit={{ opacity: 0 }}
             className="text-xs text-[#D4AF37] mb-8 -mt-4"
           >
-            {size ? `Added — size ${size}.` : "Pick a size first."}
+            Item has been added to cart
           </motion.p>
         )}
-      </AnimatePresence> */}
+      </AnimatePresence>
 
       <div className="border-t border-[#D4AF37]/15 pt-6">
         <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-semibold mb-4">

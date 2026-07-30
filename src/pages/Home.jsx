@@ -8,6 +8,9 @@ import { fetchProducts } from "../lib/supabase";
 import bespokeAgbadaImg from "../assets/closup-blue.png";
 import luxuryKaftans from "../assets/closeup-red.png";
 import groomWedding from "../assets/closeup-suit.png";
+import corporatenativewear from "../assets/closeup-cream.png";
+import customtradattire from "../assets/front-trad-attire.png";
+import slippers from "../assets/back-slippers-1.png";
 
 const categories = [
   {
@@ -24,15 +27,15 @@ const categories = [
   },
   {
     name: "Corporate Native Wear",
-    img: "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=600&q=80",
+    img: corporatenativewear,
   },
   {
     name: "Custom Traditional Attire",
-    img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&q=80",
+    img: customtradattire,
   },
   {
-    name: "Ready-to-Wear Collections",
-    img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=600&q=80",
+    name: "Footwears",
+    img: slippers,
   },
 ];
 
