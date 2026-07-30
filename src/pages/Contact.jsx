@@ -11,7 +11,7 @@ const channels = [
     value:
       "RANGE’S PLACE, BESIDE RABLOR FUEL STATION, ALONG OLUYOLE SHARP CORNER TO KUOLA ROAD.",
   },
-  { label: "Hours", value: "Mon–Sat, 10am – 7pm WAT" },
+  { label: "Hours", value: "Mon–Sat, 9am – 6pm WAT" },
 ];
 
 function ContactForm() {
