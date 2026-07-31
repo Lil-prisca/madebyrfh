@@ -43,14 +43,14 @@ const NavBar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <button className="hidden sm:flex w-9 h-9 rounded-xl border border-white/10 items-center justify-center text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/40 transition-colors">
+          {/* <button className="hidden sm:flex w-9 h-9 rounded-xl border border-white/10 items-center justify-center text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/40 transition-colors">
             <svg className="w-4 h-4" viewBox="0 0 16 16" fill="none">
               <path
                 d="M12.9 14.32a8 8 0 111.41-1.41l4.38 4.37-1.41 1.42-4.38-4.38z"
                 fill="currentColor"
               />
             </svg>
-          </button>
+          </button> */}
           <Link to="/cart">
             <button className="relative flex w-9 h-9 rounded-xl border border-white/10 items-center justify-center text-white/70 hover:text-[#D4AF37] hover:border-[#D4AF37]/40 transition-colors">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">

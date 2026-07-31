@@ -117,11 +117,11 @@ function Hero() {
               Shop Collection
             </button>
           </Link>
-          <Link to="/lookbook">
+          {/* <Link to="/lookbook">
             <button className="border border-white/20 text-white px-8 py-3.5 rounded-2xl font-semibold text-sm hover:border-[#D4AF37]/50 hover:text-[#D4AF37] transition-colors">
               Lookbook
             </button>
-          </Link>
+          </Link> */}
         </motion.div>
       </motion.div>
     </section>
@@ -287,14 +287,17 @@ function Banner() {
         <div className="absolute inset-0 flex items-center px-10 lg:px-16">
           <div className="max-w-md">
             <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium block mb-4">
-              Limited Run
+              Proudly Nigerian
             </span>
             <h3 className="font-display text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight">
-              Made for the Few Who Notice Detail
+              Cut, Sewn and Worn With Pride
             </h3>
-            <button className="bg-[#D4AF37] text-black px-7 py-3 rounded-2xl text-sm font-semibold hover:bg-[#c4a02f] transition-colors">
-              Shop Limited
-            </button>
+            <Link
+              to="/shop"
+              className="inline-block bg-[#D4AF37] text-black px-7 py-3 rounded-2xl text-sm font-semibold hover:bg-[#c4a02f] transition-colors"
+            >
+              Shop the Collection
+            </Link>
           </div>
         </div>
       </motion.div>

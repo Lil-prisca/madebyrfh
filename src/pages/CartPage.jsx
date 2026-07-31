@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import { useCart } from "../context/useCart";
 import { createOrder, createOrderItems } from "../lib/supabase";
 
-const WHATSAPP_NUMBER = "2348144169686";
+const WHATSAPP_NUMBER = "+2348054362327";
 
 function buildWhatsAppMessage(cart, total, customer) {
   const lines = cart.map(

@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
 
 import NavBar from "../components/NavBar";
@@ -243,9 +244,11 @@ function CTA() {
           confidence, celebrate culture, and stand the test of time — serving
           clients across Nigeria and beyond.
         </p>
-        <button className="bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors">
-          Explore the Collection
-        </button>
+        <Link to="/shop">
+          <button className="bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors">
+            Explore the Collection
+          </button>
+        </Link>
       </motion.div>
     </section>
   );
