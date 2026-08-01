@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
+import { sendContactMessage } from "../lib/supabase";
 
 const channels = [
   { label: "Email", value: "concierge@madebyrfh.com" },
@@ -17,12 +18,27 @@ const channels = [
 function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleChange = (field) => (e) =>
     setForm({ ...form, [field]: e.target.value });
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!form.name || !form.email || !form.message) return;
+
+    setSending(true);
+    setError(null);
+
+    const { error: err } = await sendContactMessage(form);
+
+    setSending(false);
+
+    if (err) {
+      setError(err.message || "Unable to send your message. Please try again.");
+      return;
+    }
+
     setSent(true);
   };
 
@@ -97,11 +113,15 @@ function ContactForm() {
             className="w-full bg-black/40 border border-[#D4AF37]/20 rounded-xl px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-[#D4AF37]/60 transition-colors resize-none"
           />
         </div>
+
+        {error && <p className="text-red-400 text-xs">{error}</p>}
+
         <button
           onClick={handleSubmit}
-          className="w-full bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] transition-colors"
+          disabled={sending}
+          className="w-full bg-[#D4AF37] text-black px-8 py-3.5 rounded-2xl font-semibold text-sm hover:bg-[#c4a02f] disabled:opacity-50 transition-colors"
         >
-          Send Message
+          {sending ? "Sending…" : "Send Message"}
         </button>
       </div>
     </div>

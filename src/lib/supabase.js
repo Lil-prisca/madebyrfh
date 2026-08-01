@@ -197,3 +197,29 @@ export const fetchOrder = (id) =>
     )
     .eq("id", id)
     .single();
+
+// contact
+
+export const sendContactMessage = ({ name, email, message }) =>
+  supabase
+    .from("contact_messages")
+    .insert({ name, email, message })
+    .select()
+    .single();
+
+export const fetchContactMessages = () =>
+  supabase
+    .from("contact_messages")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+export const markMessageRead = (id, is_read) =>
+  supabase
+    .from("contact_messages")
+    .update({ is_read })
+    .eq("id", id)
+    .select()
+    .single();
+
+export const deleteContactMessage = (id) =>
+  supabase.from("contact_messages").delete().eq("id", id);

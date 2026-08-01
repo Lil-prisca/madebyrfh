@@ -5,6 +5,7 @@ import AdminAuth from "./AdminAuth";
 import AdminDashboard from "./AdminDashboard";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
+import AdminMessage from "./AdminMessages";
 
 // ─── Sidebar + topbar layout (inline so it can receive setPage/page) ─────────
 import { signOut } from "../lib/supabase";
@@ -57,6 +58,24 @@ const NAV_ITEMS = [
   {
     key: "products",
     label: "Products",
+    icon: (
+      <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
+        <path
+          d="M20 7H4a1 1 0 00-1 1v11a1 1 0 001 1h16a1 1 0 001-1V8a1 1 0 00-1-1z"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+        <path
+          d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"
+          stroke="currentColor"
+          strokeWidth="1.5"
+        />
+      </svg>
+    ),
+  },
+  {
+    key: "messages",
+    label: "Messages",
     icon: (
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
         <path
@@ -162,6 +181,7 @@ const PAGE_COMPONENTS = {
   dashboard: <AdminDashboard />,
   products: <AdminProducts />,
   orders: <AdminOrders />,
+  messages: <AdminMessage />,
 };
 
 function AdminShell() {
