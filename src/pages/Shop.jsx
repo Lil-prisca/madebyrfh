@@ -1,20 +1,15 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useNavigate } from "react-router-dom";
-// import { products as allProducts } from "../product";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { fetchProducts } from "../lib/supabase";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-const categories = [
-  "All",
-  "Footwear",
-  "Tailoring",
-  "Suits",
-  "Essentials",
-  "Corporate Native Wear",
-  "Custom Traditional Attire",
-];
+const shopCategories = {
+  Tailoring: ["Agbada", "Kaftans", "Native Wear", "Wearons"],
+  Weddings: ["Groom", "Corporate"],
+};
+
 const sorts = [
   { label: "Newest", value: "newest" },
   { label: "Price: Low to High", value: "asc" },
@@ -22,6 +17,9 @@ const sorts = [
 ];
 
 function ShopHeader() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const activeLabel = searchParams.get("category") || searchParams.get("group");
+
   return (
     <section className="pt-40 pb-10 max-w-6xl mx-auto px-6 lg:px-10">
       <motion.div
@@ -44,39 +42,31 @@ function ShopHeader() {
         Shop
         <span className="absolute -bottom-2 left-0 w-12 h-[3px] bg-[#D4AF37] rounded-full" />
       </motion.h1>
+
+      {activeLabel && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="flex items-center gap-3 mt-6"
+        >
+          <span className="text-xs px-3 py-1.5 rounded-full bg-[#D4AF37]/15 text-[#D4AF37] border border-[#D4AF37]/25 font-medium">
+            {activeLabel}
+          </span>
+          <button
+            onClick={() => setSearchParams({})}
+            className="text-white/40 hover:text-white text-xs underline underline-offset-2 transition-colors"
+          >
+            Clear
+          </button>
+        </motion.div>
+      )}
     </section>
   );
 }
 
-function FilterSidebar({
-  activeCategory,
-  setActiveCategory,
-  maxPrice,
-  setMaxPrice,
-}) {
+function FilterSidebar({ maxPrice, setMaxPrice }) {
   return (
     <div className="space-y-10 rounded-2xl border border-[#D4AF37]/15 bg-gradient-to-b from-[#D4AF37]/[0.04] to-transparent p-6">
-      <div>
-        <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-semibold mb-4">
-          Category
-        </h4>
-        <div className="flex flex-col  overflow-auto gap-1">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`text-left text-sm py-1.5 pl-3 border-l-2 transition-colors ${
-                activeCategory === cat
-                  ? "text-[#D4AF37] font-medium border-[#D4AF37]"
-                  : "text-white/50 hover:text-white/80 border-white/10 hover:border-[#D4AF37]/40"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div>
         <h4 className="text-[#D4AF37] text-xs uppercase tracking-[0.2em] font-semibold mb-4">
           Max Price
@@ -157,7 +147,10 @@ function ProductCard({ product, index }) {
 }
 
 function ShopGrid() {
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [searchParams] = useSearchParams();
+  const activeCategory = searchParams.get("category");
+  const activeGroup = searchParams.get("group");
+
   const [maxPrice, setMaxPrice] = useState(2220000);
   const [sort, setSort] = useState("newest");
   const [sortOpen, setSortOpen] = useState(false);
@@ -182,11 +175,14 @@ function ShopGrid() {
   }, []);
 
   const filtered = useMemo(() => {
-    let list = products.filter(
-      (p) =>
-        (activeCategory === "All" || p.category === activeCategory) &&
-        Number(p.price_val) <= maxPrice,
-    );
+    let list = products.filter((p) => {
+      if (activeCategory) return p.category === activeCategory;
+      if (activeGroup)
+        return (shopCategories[activeGroup] ?? []).includes(p.category);
+      return true;
+    });
+
+    list = list.filter((p) => Number(p.price_val) <= maxPrice);
 
     if (sort === "asc") {
       list = [...list].sort(
@@ -201,7 +197,7 @@ function ShopGrid() {
     }
 
     return list;
-  }, [products, activeCategory, maxPrice, sort]);
+  }, [products, activeCategory, activeGroup, maxPrice, sort]);
 
   if (loading) {
     return (
@@ -215,12 +211,7 @@ function ShopGrid() {
     <section className="max-w-6xl mx-auto px-6 lg:px-10 pb-24">
       <div className="grid lg:grid-cols-[220px_1fr] gap-10">
         <aside className="hidden lg:block">
-          <FilterSidebar
-            activeCategory={activeCategory}
-            setActiveCategory={setActiveCategory}
-            maxPrice={maxPrice}
-            setMaxPrice={setMaxPrice}
-          />
+          <FilterSidebar maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
         </aside>
 
         <div>
@@ -274,21 +265,8 @@ function ShopGrid() {
             </div>
           </div>
 
-          {/* Mobile category pills */}
-          <div className="flex lg:hidden gap-2 mb-8 overflow-x-auto pb-1 scrollbar-hide flex-wrap">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`shrink-0 text-xs px-4 py-2 rounded-xl border transition-colors ${
-                  activeCategory === cat
-                    ? "border-[#D4AF37] text-[#D4AF37]"
-                    : "border-white/10 text-white/50"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
+          <div className="lg:hidden mb-8">
+            <FilterSidebar maxPrice={maxPrice} setMaxPrice={setMaxPrice} />
           </div>
 
           <motion.div

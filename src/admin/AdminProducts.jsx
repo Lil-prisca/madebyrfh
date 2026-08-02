@@ -8,7 +8,15 @@ import {
   uploadProductImage,
 } from "../lib/supabase";
 
-const CATEGORIES = ["Footwear", "Tailoring", "Suits"];
+const CATEGORIES = [
+  "Footwear",
+  "Agbada",
+  "Kaftans",
+  "Native Wear",
+  "Wearons",
+  "Groom",
+  "Corporate",
+];
 const TAGS = ["", "New", "Limited"];
 
 const EMPTY_FORM = {
