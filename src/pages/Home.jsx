@@ -119,6 +119,8 @@ function Hero() {
 }
 
 function ProductCard({ product, index }) {
+  const navigate = useNavigate();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 40 }}
@@ -129,7 +131,8 @@ function ProductCard({ product, index }) {
         duration: 0.6,
         ease: [0.22, 1, 0.36, 1],
       }}
-      className="group rounded-2xl border border-white/10 bg-white/3 backdrop-blur-md overflow-hidden hover:border-[#D4AF37]/30 transition-colors duration-500"
+      onClick={() => navigate(`/shop/${product.id}`)}
+      className="group rounded-2xl border border-white/10 bg-white/3 backdrop-blur-md overflow-hidden hover:border-[#D4AF37]/30 transition-colors duration-500 cursor-pointer"
     >
       <div className="relative h-72 overflow-hidden">
         <img
@@ -143,7 +146,10 @@ function ProductCard({ product, index }) {
             {product.tag}
           </span>
         )}
-        <button className="absolute bottom-4 right-4 w-10 h-10 rounded-xl bg-black/70 backdrop-blur-sm border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+        <button
+          onClick={(e) => e.stopPropagation() /* wishlist logic here */}
+          className="absolute bottom-4 right-4 w-10 h-10 rounded-xl bg-black/70 backdrop-blur-sm border border-[#D4AF37]/30 flex items-center justify-center text-[#D4AF37] opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300"
+        >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none">
             <path
               d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4M3 6h18M16 10a4 4 0 01-8 0"
@@ -164,7 +170,6 @@ function ProductCard({ product, index }) {
     </motion.div>
   );
 }
-
 function Categories() {
   const navigate = useNavigate();
   return (
@@ -248,9 +253,12 @@ function Products() {
             The Edit
           </h2>
         </div>
-        <button className="text-white/50 hover:text-[#D4AF37] text-sm font-medium hidden sm:block transition-colors">
+        <Link
+          to="/shop"
+          className="text-white hover:text-[#D4AF37] text-sm font-medium  sm:block transition-colors"
+        >
           View all →
-        </button>
+        </Link>
       </motion.div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
