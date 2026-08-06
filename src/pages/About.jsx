@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
+import wardrobeImage from "../assets/wardrobe.jpg";
 
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
@@ -48,7 +49,7 @@ function AboutHero() {
     >
       <motion.div style={{ y }} className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?w=1920&q=85"
+          src={wardrobeImage}
           alt="Atelier"
           className="w-full h-full object-cover grayscale-[35%] sepia-[0.15]"
         />
