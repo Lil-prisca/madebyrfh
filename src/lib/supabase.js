@@ -201,11 +201,7 @@ export const fetchOrder = (id) =>
 // contact
 
 export const sendContactMessage = ({ name, email, message }) =>
-  supabase
-    .from("contact_messages")
-    .insert({ name, email, message })
-    .select()
-    .single();
+  supabase.from("contact_messages").insert({ name, email, message });
 
 export const fetchContactMessages = () =>
   supabase
