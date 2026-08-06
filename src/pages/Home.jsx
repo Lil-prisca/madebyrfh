@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import heroimg from "../assets/lanscapeimg.jpeg";
 import { motion, useScroll, useTransform } from "framer-motion";
 import NavBar from "../components/NavBar";
@@ -13,30 +13,20 @@ import customtradattire from "../assets/front-trad-attire.png";
 import slippers from "../assets/back-slippers-1.png";
 
 const categories = [
-  {
-    name: "Bespoke Agbada",
-    img: bespokeAgbadaImg,
-  },
-  {
-    name: "Luxury Kaftans",
-    img: luxuryKaftans,
-  },
-  {
-    name: "Groom & Wedding Ensembles",
-    img: groomWedding,
-  },
+  { name: "Bespoke Agbada", img: bespokeAgbadaImg, category: "Agbada" },
+  { name: "Luxury Kaftans", img: luxuryKaftans, category: "Kaftans" },
+  { name: "Groom & Wedding Ensembles", img: groomWedding, category: "Groom" },
   {
     name: "Corporate Native Wear",
     img: corporatenativewear,
+    category: "Corporate",
   },
   {
     name: "Custom Traditional Attire",
     img: customtradattire,
+    category: "Native Wear",
   },
-  {
-    name: "Footwears",
-    img: slippers,
-  },
+  { name: "Footwears", img: slippers, category: "Footwear" },
 ];
 
 function Hero() {
@@ -176,6 +166,7 @@ function ProductCard({ product, index }) {
 }
 
 function Categories() {
+  const navigate = useNavigate();
   return (
     <section className="py-24 max-w-6xl mx-auto px-6 lg:px-10">
       <motion.div
@@ -199,6 +190,9 @@ function Categories() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: i * 0.1, duration: 0.6 }}
+            onClick={() =>
+              navigate(`/shop?category=${encodeURIComponent(cat.category)}`)
+            }
             className="group relative rounded-2xl overflow-hidden h-64 cursor-pointer border border-white/10"
           >
             <img
