@@ -273,7 +273,7 @@ function Banner() {
         className="relative rounded-2xl overflow-hidden h-80 border border-[#D4AF37]/20"
       >
         <img
-          src="https://images.unsplash.com/photo-1505022610485-0249ba5b3675?w=1600&q=85"
+          src={groomWedding}
           alt="Limited collection"
           className="w-full h-full object-cover grayscale-[30%]"
         />
