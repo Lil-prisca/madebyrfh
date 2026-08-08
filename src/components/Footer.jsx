@@ -11,7 +11,7 @@ const socials = [
   },
   {
     icon: FaFacebookF,
-    href: "https://facebook.com/yourpage",
+    href: "https://facebook.com/share/1EvV5fwbcM",
     color: "#1877F2",
     label: "Facebook",
   },
@@ -66,10 +66,10 @@ const Footer = () => {
           {
             title: "Shop",
             links: [
-              { name: "Outerwear", to: "/shop" },
-              { name: "Footwear", to: "/" },
-              { name: "Tailoring", to: "/" },
-              { name: "Essentials", to: "/" },
+              { name: "Shop", to: "/shop" },
+              { name: "Footwear", to: "/shop?group=footwear" },
+              { name: "Tailoring", to: "/shop?group=Tailoring" },
+              { name: "Weddings", to: "/shop?group=Weddings" },
             ],
           },
           {
@@ -82,9 +82,9 @@ const Footer = () => {
           {
             title: "Support",
             links: [
-              { name: "Shipping", to: "/" },
-              { name: "Returns", to: "/" },
-              { name: "Size Guide", to: "/" },
+              { name: "Shipping", to: "/contact" },
+              { name: "Returns", to: "/contact" },
+              { name: "Size Guide", to: "/contact" },
             ],
           },
         ].map((col) => (
