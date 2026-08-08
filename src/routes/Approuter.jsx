@@ -8,6 +8,7 @@ import ItemDetail from "../pages/ItemDetails";
 import CartPage from "../pages/CartPage";
 import ScrollToTop from "../components/ScrollToTop";
 import AdminApp from "../admin/AdminApp";
+import Rfhsizeguide from "../components/Rfhsizeguide";
 
 const Approuter = () => {
   return (
@@ -21,6 +22,7 @@ const Approuter = () => {
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<ItemDetail />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/size-guide" element={<Rfhsizeguide />} />
       </Routes>
     </>
   );

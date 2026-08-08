@@ -82,9 +82,9 @@ const Footer = () => {
           {
             title: "Support",
             links: [
-              { name: "Shipping", to: "/contact" },
-              { name: "Returns", to: "/contact" },
-              { name: "Size Guide", to: "/contact" },
+              // { name: "Shipping", to: "/contact" },
+              // { name: "Returns", to: "/contact" },
+              { name: "Size Guide", to: "/size-guide" },
             ],
           },
         ].map((col) => (
