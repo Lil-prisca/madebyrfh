@@ -1,14 +1,13 @@
 import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { fetchProducts } from "../lib/supabase";
+import {
+  fetchProducts,
+  fetchShopMenu,
+  buildShopMenuTree,
+} from "../lib/supabase";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
-
-const shopCategories = {
-  Tailoring: ["Agbada", "Kaftans", "Native Wear", "Wearons"],
-  Weddings: ["Groom", "Corporate"],
-};
 
 const sorts = [
   { label: "Newest", value: "newest" },
@@ -158,6 +157,8 @@ function ShopGrid() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [shopMenu, setShopMenu] = useState([]);
+
   useEffect(() => {
     const loadProducts = async () => {
       const { data, error } = await fetchProducts();
@@ -174,11 +175,28 @@ function ShopGrid() {
     loadProducts();
   }, []);
 
+  useEffect(() => {
+    const loadMenu = async () => {
+      const { data } = await fetchShopMenu();
+      setShopMenu(buildShopMenuTree(data ?? []));
+    };
+
+    loadMenu();
+  }, []);
+
+  const shopCategoriesMap = useMemo(() => {
+    const map = {};
+    shopMenu.forEach((cat) => {
+      map[cat.name] = cat.subsections.map((s) => s.name);
+    });
+    return map;
+  }, [shopMenu]);
+
   const filtered = useMemo(() => {
     let list = products.filter((p) => {
       if (activeCategory) return p.category === activeCategory;
       if (activeGroup)
-        return (shopCategories[activeGroup] ?? []).includes(p.category);
+        return (shopCategoriesMap[activeGroup] ?? []).includes(p.category);
       return true;
     });
 
@@ -197,7 +215,14 @@ function ShopGrid() {
     }
 
     return list;
-  }, [products, activeCategory, activeGroup, maxPrice, sort]);
+  }, [
+    products,
+    activeCategory,
+    activeGroup,
+    shopCategoriesMap,
+    maxPrice,
+    sort,
+  ]);
 
   if (loading) {
     return (

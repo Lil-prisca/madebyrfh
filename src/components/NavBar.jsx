@@ -1,23 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, NavLink } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import logo from "../assets/Logo.png";
 import { useCart } from "../context/useCart";
-
-const shopMenu = [
-  {
-    name: "Tailoring",
-    subsections: ["Agbada", "Kaftans", "Native Wear", "Wearons"],
-  },
-  {
-    name: "Footwear",
-    subsections: [],
-  },
-  {
-    name: "Weddings",
-    subsections: ["Groom", "Corporate"],
-  },
-];
+import { fetchShopMenu, buildShopMenuTree } from "../lib/supabase";
 
 const navLinks = [
   { link: "/about", name: "About" },
@@ -29,6 +15,15 @@ const NavBar = () => {
   const [open, setOpen] = useState(false);
   const [shopOpen, setShopOpen] = useState(false);
   const [mobileShopOpen, setMobileShopOpen] = useState(false);
+  const [shopMenu, setShopMenu] = useState([]);
+
+  useEffect(() => {
+    const loadMenu = async () => {
+      const { data } = await fetchShopMenu();
+      setShopMenu(buildShopMenuTree(data ?? []));
+    };
+    loadMenu();
+  }, []);
 
   return (
     <motion.nav
@@ -69,7 +64,7 @@ const NavBar = () => {
             </Link>
 
             <AnimatePresence>
-              {shopOpen && (
+              {shopOpen && shopMenu.length > 0 && (
                 <motion.div
                   initial={{ opacity: 0, y: -8 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -78,7 +73,7 @@ const NavBar = () => {
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-2xl border border-[#D4AF37]/20 bg-black/95 backdrop-blur-xl p-6 shadow-[0_0_40px_rgba(0,0,0,0.6)] grid grid-cols-3 gap-6"
                 >
                   {shopMenu.map((cat) => (
-                    <div key={cat.name}>
+                    <div key={cat.id}>
                       <Link
                         to={
                           cat.subsections.length
@@ -95,12 +90,12 @@ const NavBar = () => {
                         <div className="flex flex-col gap-2">
                           {cat.subsections.map((sub) => (
                             <Link
-                              key={sub}
-                              to={`/shop?category=${encodeURIComponent(sub)}`}
+                              key={sub.id}
+                              to={`/shop?category=${encodeURIComponent(sub.name)}`}
                               onClick={() => setShopOpen(false)}
                               className="text-white/50 text-sm hover:text-[#D4AF37] transition-colors"
                             >
-                              {sub}
+                              {sub.name}
                             </Link>
                           ))}
                         </div>
@@ -209,7 +204,7 @@ const NavBar = () => {
                       className="overflow-hidden pl-3"
                     >
                       {shopMenu.map((cat) => (
-                        <div key={cat.name} className="py-2">
+                        <div key={cat.id} className="py-2">
                           <Link
                             to={
                               cat.subsections.length
@@ -225,12 +220,12 @@ const NavBar = () => {
                             <div className="flex flex-col gap-1.5 pl-3">
                               {cat.subsections.map((sub) => (
                                 <Link
-                                  key={sub}
-                                  to={`/shop?category=${encodeURIComponent(sub)}`}
+                                  key={sub.id}
+                                  to={`/shop?category=${encodeURIComponent(sub.name)}`}
                                   onClick={() => setOpen(false)}
                                   className="text-white/50 text-xs py-1"
                                 >
-                                  {sub}
+                                  {sub.name}
                                 </Link>
                               ))}
                             </div>

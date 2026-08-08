@@ -219,3 +219,42 @@ export const markMessageRead = (id, is_read) =>
 
 export const deleteContactMessage = (id) =>
   supabase.from("contact_messages").delete().eq("id", id);
+
+// ─── Shop Menu ────────────────────────────────────────────────────────────────
+export const fetchShopMenu = () =>
+  supabase
+    .from("shop_menu")
+    .select("*")
+    .order("sort_order", { ascending: true });
+
+export const insertShopMenuItem = (data) =>
+  supabase.from("shop_menu").insert(data).select().single();
+
+export const updateShopMenuItem = (id, data) => {
+  const { id: _omit, ...safeData } = data;
+  return supabase
+    .from("shop_menu")
+    .update(safeData)
+    .eq("id", id)
+    .select()
+    .single();
+};
+
+export const deleteShopMenuItem = (id) =>
+  supabase.from("shop_menu").delete().eq("id", id);
+
+// Converts flat shop_menu rows into { id, name, subsections: [{id, name}] } shape
+export const buildShopMenuTree = (rows) => {
+  const top = rows
+    .filter((r) => !r.parent_id)
+    .sort((a, b) => a.sort_order - b.sort_order);
+
+  return top.map((cat) => ({
+    id: cat.id,
+    name: cat.name,
+    subsections: rows
+      .filter((r) => r.parent_id === cat.id)
+      .sort((a, b) => a.sort_order - b.sort_order)
+      .map((s) => ({ id: s.id, name: s.name })),
+  }));
+};
