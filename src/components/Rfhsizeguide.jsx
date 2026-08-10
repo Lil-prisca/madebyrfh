@@ -3,42 +3,18 @@ import { Link } from "react-router-dom";
 import NavBar from "../components/NavBar";
 import Footer from "../components/Footer";
 
-const sizes = [
-  {
-    local: "8 (Small)",
-    us: "4",
-    bust: "32 – 34",
-    waist: "24 – 26",
-    hips: "34 – 36",
-  },
-  {
-    local: "10 (Medium)",
-    us: "6",
-    bust: "35 – 36",
-    waist: "27 – 28",
-    hips: "37 – 38",
-  },
-  {
-    local: "12 (Large)",
-    us: "8",
-    bust: "37 – 38",
-    waist: "29 – 30",
-    hips: "39 – 40",
-  },
-  {
-    local: "14 (XL)",
-    us: "10",
-    bust: "39 – 40",
-    waist: "31 – 32",
-    hips: "41 – 42",
-  },
-  {
-    local: "16 (XXL)",
-    us: "12",
-    bust: "41 – 42",
-    waist: "33 – 34",
-    hips: "43 – 44",
-  },
+const sizeColumns = ["S", "M", "L", "XL", "XXL", "MT (Medium Tall)"];
+
+const measurements = [
+  { label: "Neck", values: ["15", "16", "17", "18", "21", "16"] },
+  { label: "Shoulder", values: ["17", "19", "20", "21", "23", "19"] },
+  { label: "Sleeve Length", values: ["24", "25.5", "26", "26", "27", "29"] },
+  { label: "Chest", values: ["41", "44", "46", "50", "58", "44"] },
+  { label: "Stomach", values: ["40", "43", "45", "49", "57", "43"] },
+  { label: "Body Length", values: ["34", "35", "35", "35", "38", "40"] },
+  { label: "Waist", values: ["33", "37", "40", "45", "49", "38"] },
+  { label: "Lap", values: ["25", "26.5", "30", "33", "37", "28"] },
+  { label: "Trouser Length", values: ["40", "40", "42", "42", "42", "43"] },
 ];
 
 const measureSteps = [
@@ -140,42 +116,40 @@ function SizeChart() {
         className="rounded-2xl border border-[#D4AF37]/15 bg-white/[0.02] overflow-hidden"
       >
         <div className="overflow-x-auto">
-          <table className="w-full text-sm min-w-[560px]">
+          <table className="w-full text-sm min-w-[640px]">
             <thead>
               <tr className="border-b border-[#D4AF37]/15">
-                {[
-                  "Nigerian / UK Size",
-                  "US Size",
-                  "Bust (in)",
-                  "Waist (in)",
-                  "Hips (in)",
-                ].map((h) => (
+                <th className="text-left text-[#D4AF37] text-xs uppercase tracking-wide px-6 py-4 font-semibold">
+                  Size
+                </th>
+                {sizeColumns.map((col) => (
                   <th
-                    key={h}
-                    className="text-left text-[#D4AF37] text-xs uppercase tracking-wide px-6 py-4 font-semibold"
+                    key={col}
+                    className="text-left text-[#D4AF37] text-xs uppercase tracking-wide px-6 py-4 font-semibold whitespace-nowrap"
                   >
-                    {h}
+                    {col}
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
-              {sizes.map((s, i) => (
+              {measurements.map((row, i) => (
                 <motion.tr
-                  key={s.local}
+                  key={row.label}
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.05, duration: 0.4 }}
+                  transition={{ delay: i * 0.04, duration: 0.4 }}
                   className="border-b border-white/5 last:border-0 hover:bg-white/[0.02] transition-colors"
                 >
-                  <td className="px-6 py-4 text-white font-medium">
-                    {s.local}
+                  <td className="px-6 py-4 text-white font-medium whitespace-nowrap">
+                    {row.label}
                   </td>
-                  <td className="px-6 py-4 text-white/60">{s.us}</td>
-                  <td className="px-6 py-4 text-white/60">{s.bust}</td>
-                  <td className="px-6 py-4 text-white/60">{s.waist}</td>
-                  <td className="px-6 py-4 text-white/60">{s.hips}</td>
+                  {row.values.map((v, j) => (
+                    <td key={j} className="px-6 py-4 text-white/60">
+                      {v}
+                    </td>
+                  ))}
                 </motion.tr>
               ))}
             </tbody>
