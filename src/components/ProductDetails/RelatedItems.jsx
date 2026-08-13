@@ -49,7 +49,7 @@ export default function RelatedItems({ product }) {
         <div className="h-px w-10 bg-[#D4AF37]" />
 
         <span className="text-[#D4AF37] text-xs tracking-[0.3em] uppercase font-medium">
-          Pairs Well With
+          Similar Products
         </span>
       </motion.div>
 
