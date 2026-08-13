@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState,useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   fetchProducts,
@@ -6,22 +6,15 @@ import {
   updateProduct,
   deleteProduct,
   uploadProductImage,
+  fetchShopMenu,buildShopMenuTree,
 } from "../lib/supabase";
 
-const CATEGORIES = [
-  "Footwear",
-  "Agbada",
-  "Kaftans",
-  "Native Wear",
-  "Wearons",
-  "Groom",
-  "Corporate",
-];
+
 const TAGS = ["", "New", "Limited"];
 
 const EMPTY_FORM = {
   name: "",
-  category: "Tailoring",
+  category: "",
   price: "",
   price_val: "",
   tag: "",
@@ -32,7 +25,7 @@ const EMPTY_FORM = {
   details: "",
 };
 
-function Modal({ product, onClose, onSave }) {
+function Modal({ product, categories, onClose, onSave }) {
   const [form, setForm] = useState(
     product
       ? {
@@ -53,6 +46,12 @@ function Modal({ product, onClose, onSave }) {
   const [uploadingMain, setUploadingMain] = useState(false);
   const [uploadingGallery, setUploadingGallery] = useState(false);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+  if (!product && !form.category && categories.length > 0) {
+    setForm((f) => ({ ...f, category: categories[0] }));
+  }
+}, [categories, product]);
 
   const set = (field) => (e) =>
     setForm((f) => ({ ...f, [field]: e.target.value }));
@@ -221,17 +220,21 @@ function Modal({ product, onClose, onSave }) {
 
             <div>
               <label className={labelCls}>Category</label>
-              <select
+             <select
                 className={inputCls}
                 value={form.category}
                 onChange={set("category")}
-              >
-                {CATEGORIES.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
+                disabled={categories.length === 0}>
+            {categories.length === 0 ? (
+        <option value="">Loading categories…</option>
+  ) : (
+    categories.map((c) => (
+      <option key={c} value={c}>
+        {c}
+      </option>
+    ))
+  )}
+</select>
             </div>
 
             <div>
@@ -464,6 +467,27 @@ export default function AdminProducts() {
   const [modal, setModal] = useState(null);
   const [deleteTarget, setDeleteTarget] = useState(null);
   const [search, setSearch] = useState("");
+  const [shopMenu, setShopMenu] = useState([]);
+
+useEffect(() => {
+  const loadMenu = async () => {
+    const { data } = await fetchShopMenu();
+    setShopMenu(buildShopMenuTree(data ?? []));
+  };
+  loadMenu();
+}, []);
+
+const categoryOptions = useMemo(() => {
+  const opts = [];
+  shopMenu.forEach((cat) => {
+    if (cat.subsections.length > 0) {
+      cat.subsections.forEach((sub) => opts.push(sub.name));
+    } else {
+      opts.push(cat.name); // categories with no subsections (e.g. Footwear) are selectable directly
+    }
+  });
+  return opts;
+}, [shopMenu]);
 
   const load = async () => {
     setLoading(true);
@@ -668,6 +692,7 @@ export default function AdminProducts() {
         {modal && (
           <Modal
             product={modal === "add" ? null : modal}
+            categories={categoryOptions}
             onClose={() => setModal(null)}
             onSave={handleSave}
           />
