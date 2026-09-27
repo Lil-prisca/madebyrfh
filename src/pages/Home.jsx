@@ -29,14 +29,6 @@ const categories = [
   { name: "Footwears", img: slippers, category: "Slippers" },
 ];
 
-
-corporate
-groom  Agbada
-bespoke Agbada 
-bespoke Kaftans
-footwear
-
-
 function Hero() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -230,17 +222,23 @@ function Products() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const load = async () => {
-    setLoading(true);
-    const { data } = await fetchProducts();
-    setProducts((data ?? []).slice(0, 5));
-
-    setLoading(false);
-  };
-
   useEffect(() => {
+    const load = async () => {
+      setLoading(true);
+
+      try {
+        const { data } = await fetchProducts();
+        setProducts((data ?? []).slice(0, 5));
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     load();
   }, []);
+
   return (
     <section className="py-12 max-w-6xl mx-auto px-6 lg:px-10">
       <motion.div
