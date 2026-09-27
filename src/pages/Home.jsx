@@ -14,20 +14,28 @@ import slippers from "../assets/back-slippers-1.png";
 
 const categories = [
   { name: "Bespoke Agbada", img: bespokeAgbadaImg, category: "Agbada" },
-  { name: "Luxury Kaftans", img: luxuryKaftans, category: "Kaftans" },
-  { name: "Groom & Wedding Ensembles", img: groomWedding, category: "Groom" },
+  { name: "Bespoke Kaftans", img: luxuryKaftans, category: "Kaftans" },
+  { name: "Groom & Wedding Agbada", img: groomWedding, category: "Groom" },
   {
-    name: "Corporate Native Wear",
+    name: "Corporate Wear",
     img: corporatenativewear,
     category: "Corporate",
   },
   {
     name: "Custom Traditional Attire",
     img: customtradattire,
-    category: "Native Wear",
+    category: "Groom",
   },
-  { name: "Footwears", img: slippers, category: "Footwear" },
+  { name: "Footwears", img: slippers, category: "Slippers" },
 ];
+
+
+corporate
+groom  Agbada
+bespoke Agbada 
+bespoke Kaftans
+footwear
+
 
 function Hero() {
   const ref = useRef(null);
